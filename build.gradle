@@ -1,0 +1,31 @@
+plugins {
+    id "org.flywaydb.flyway" version "9.8.1"
+}
+
+apply plugin: "java"
+
+repositories {
+    mavenCentral() 
+}
+
+dependencies {
+	implementation 'org.postgresql:postgresql:42.5.2'
+}
+
+task migrateDatabase(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+	//if(project.hasProperty('env') == false) {ext.env = 'dev'}
+        //apply from: "env/${env}.gradle"
+	// https://github.com/hi1280/gradle-flyway-example/blob/master/build.gradle
+	url = 'jdbc:postgresql://localhost:5432/fawkes'
+        user = 'fawkes_u'
+	password = 'fawkes_u'
+	locations = ['filesystem:migrations']
+}
+
+task migrateDatabaseTest(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+	url = 'jdbc:postgresql://localhost:5432/fawkes_test'
+	user = 'fawkes_u'
+	password = 'fawkes_u'
+	locations = ['filesystem:migrations']
+}
+			

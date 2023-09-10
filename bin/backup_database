@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pg_dump -d fawkes | tee "backups/backup$(date '+%m_%d__%H_%M_%S').sql" &> /dev/null
+
+ t
