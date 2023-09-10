@@ -1,3 +1,4 @@
 # Flyway Migrations by Gradle
 
-Flyway
+This is a micro project that can be used to run database migraitons with
+flyway independent of a java project. It allows usage in non-jvm projects
